@@ -27,12 +27,21 @@ public class Reservation {
     @Enumerated(EnumType.STRING)
     private StatutReservation statut;
 
-    @ManyToOne
-    private Vehicule vehicule;
-
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_client")
+    @ToString.Exclude
     private Client client;
 
-    @OneToOne(mappedBy = "reservation")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_vehicule")
+    @ToString.Exclude
+    private Vehicule vehicule;
+
+    @OneToOne(
+            mappedBy = "reservation",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL
+    )
+    @ToString.Exclude
     private Contrat contrat;
 }

@@ -24,6 +24,8 @@ public class Employee {
     @Enumerated(EnumType.STRING)
     private RoleEmploye role;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_agence")
+    @ToString.Exclude
     private Agence agence;
 }

@@ -24,6 +24,8 @@ public class Maintenance {
     private LocalDate dateFin;
     private String description;
 
-    @ManyToOne
-    Vehicule vehicule;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_vehicule")
+    @ToString.Exclude
+    private Vehicule vehicule;
 }

@@ -5,6 +5,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -28,6 +29,11 @@ public class Client {
     private String numPermis;
     private LocalDate dateInscription;
 
-    @OneToMany(mappedBy = "client")
-    List<Reservation> reservations;
+    @OneToMany(
+            mappedBy = "client",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.PERSIST
+    )
+    @ToString.Exclude
+    private List<Reservation> reservations = new ArrayList<>();
 }

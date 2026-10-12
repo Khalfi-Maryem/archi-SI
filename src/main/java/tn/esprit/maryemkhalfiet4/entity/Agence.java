@@ -2,18 +2,14 @@ package tn.esprit.maryemkhalfiet4.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.FieldDefaults;
-
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@ToString
-@FieldDefaults(level = AccessLevel.PRIVATE)
+@AllArgsConstructor
 public class Agence {
 
     @Id
@@ -25,9 +21,11 @@ public class Agence {
     private String adresse;
     private String telephone;
 
-    @OneToMany(mappedBy = "agence")
-    List<Vehicule> vehicules;
+    @OneToMany(mappedBy = "agence", fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private List<Vehicule> vehicules = new ArrayList<>();
 
-    @OneToMany(mappedBy = "agence")
-    private List<Employee> employes;
+    @OneToMany(mappedBy = "agence", fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private List<Employee> employes = new ArrayList<>();
 }
