@@ -8,6 +8,7 @@ import tn.esprit.AchwekOurari.Services.IVehiculeServices;
 import tn.esprit.AchwekOurari.entity.CategorieVehicule;
 import tn.esprit.AchwekOurari.entity.Vehicule;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Tag(name = "Gestion des Véhicules", description = "Web Services REST pour la gestion du parc automobile")
@@ -77,5 +78,10 @@ public class VehiculeRestController {
     @GetMapping("listbycategorie/{categorie}")
     List<Vehicule> afficherVehicule(@PathVariable CategorieVehicule categorie){
         return iVehiculeServices.getAllBycategorie(categorie);
+    }
+
+    @GetMapping("listbycategorieAndTarif/{categorie}/{min}/{max}")
+    List<Vehicule> afficherVehiculeParTarif(@PathVariable CategorieVehicule categorie, @PathVariable BigDecimal min, @PathVariable BigDecimal max){
+        return iVehiculeServices.getAllByCategorieAndTarif(categorie, min, max);
     }
 }

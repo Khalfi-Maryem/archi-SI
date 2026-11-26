@@ -3,10 +3,15 @@ package tn.esprit.AchwekOurari.WebController;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.AchwekOurari.Services.IReservationServices;
+import tn.esprit.AchwekOurari.entity.CategorieVehicule;
 import tn.esprit.AchwekOurari.entity.Reservation;
+import tn.esprit.AchwekOurari.entity.Vehicule;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 @Tag(name = "Gestion des Réservations", description = "Web Services REST pour la gestion des réservations")
@@ -45,5 +50,10 @@ public class ReservationRestController {
     @DeleteMapping("/delete/{id}")
     public void deleteById(@PathVariable Long id) {
         iReservationServices.deleteById(id);
+    }
+
+    @GetMapping("listbydate/{date}")
+    List<Reservation> afficherReservationsParDate(@PathVariable LocalDate date){
+        return iReservationServices.afficherReservationsParDate(date);
     }
 }

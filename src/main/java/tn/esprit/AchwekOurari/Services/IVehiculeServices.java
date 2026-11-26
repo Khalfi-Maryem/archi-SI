@@ -1,8 +1,10 @@
 package tn.esprit.AchwekOurari.Services;
 
+import tn.esprit.AchwekOurari.WebController.dto.VehiculeDTO;
 import tn.esprit.AchwekOurari.entity.CategorieVehicule;
 import tn.esprit.AchwekOurari.entity.Vehicule;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface IVehiculeServices {
@@ -20,4 +22,5 @@ public interface IVehiculeServices {
     List<Vehicule> getAllByCategorie(CategorieVehicule categorie);
 
     List<Vehicule> getAllBycategorie(CategorieVehicule categorie);
+    List<Vehicule> getAllByCategorieAndTarif(CategorieVehicule categorie, BigDecimal min , BigDecimal max);
 }

@@ -12,6 +12,7 @@ import tn.esprit.AchwekOurari.entity.CategorieVehicule;
 import tn.esprit.AchwekOurari.entity.Equipement;
 import tn.esprit.AchwekOurari.entity.Vehicule;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -100,5 +101,10 @@ public class VehiculeServiceImpl implements IVehiculeServices {
     @Override
     public List<Vehicule> getAllBycategorie(CategorieVehicule categorie) {
         return List.of();
+    }
+
+    @Override
+    public List<Vehicule> getAllByCategorieAndTarif(CategorieVehicule categorie, BigDecimal min, BigDecimal max) {
+        return iVehiculeRepository.findByCategorieAndTarifJournalierBetween(categorie, min, max);
     }
 }
